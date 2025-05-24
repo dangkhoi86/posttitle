@@ -20,8 +20,8 @@ jobs:
         run: pip install requests beautifulsoup4 gspread gspread-formatting urllib3 oauth2client
 
       # Thay đổi lệnh này để tạo file credentials.json từ secret
-      - name: Create Google Sheets Credentials File
-        run: echo "${{ secrets.GOOGLE_CREDENTIALS }}" > credentials.json # Bỏ '| base64 --decode'
+      - name: Decode Google Credentials
+        run: echo "${{ secrets.GOOGLE_CREDENTIALS }}" > credentials.json
 
       - name: Run Update Post Title
         run: python postmkcom.py

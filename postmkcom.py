@@ -80,10 +80,10 @@ def check_single_product_api(site_url, consumer_key, consumer_secret, product_id
             # Kiểm tra trực tiếp trường description trong dữ liệu này
             description = product_data.get('description', '')
             print(f"\nTrường 'description' có tồn tại: {'description' in product_data}")
+            print(f'100 ký tự đầu của description: {description[:100]}...')
             # Sửa lỗi cú pháp f-string ở dòng này
-            print(f'100 ký tự đầu của description: {description[:100]}...') # Sử dụng dấu nháy đơn cho f-string
-            # Sửa lỗi cú pháp f-string ở dòng này
-            print(f'Description có chứa \'<table class="cauhinh"\': {"<table class=\"cauhinh\"" in description}')
+            contains_cauhinh = '<table class="cauhinh"' in description
+            print(f"Description có chứa '<table class=\"cauhinh\"': {contains_cauhinh}")
         else:
             print(f"Yêu cầu thất bại. Status code: {response.status_code}")
             print(f"Response text: {response.text}")

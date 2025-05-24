@@ -19,7 +19,7 @@ jobs:
       - name: Install dependencies
         run: pip install requests beautifulsoup4 gspread oauth2client
 
-      - name: Run update gold price script
+      - name: Run Update Post Title
         env:
           GOOGLE_SHEETS_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
         run: python postmkcom.py

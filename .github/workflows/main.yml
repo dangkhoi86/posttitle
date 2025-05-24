@@ -21,7 +21,7 @@ jobs:
 
       # Thay đổi lệnh này để tạo file credentials.json từ secret
       - name: Decode Google Credentials
-        run: echo "${{ secrets.GOOGLE_CREDENTIALS }}" > credentials.json
+        run: echo "${{ secrets.GOOGLE_CREDENTIALS }}" | base64 -d > credentials.json
 
       - name: Run Update Post Title
         run: python postmkcom.py

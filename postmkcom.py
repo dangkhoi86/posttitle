@@ -80,8 +80,10 @@ def check_single_product_api(site_url, consumer_key, consumer_secret, product_id
             # Kiểm tra trực tiếp trường description trong dữ liệu này
             description = product_data.get('description', '')
             print(f"\nTrường 'description' có tồn tại: {'description' in product_data}")
-            print(f"100 ký tự đầu của description: {description[:100]}...")
-            print(f"Description có chứa '<table class=\"cauhinh\"': {'<table class="cauhinh"' in description}")
+            # Sửa lỗi cú pháp f-string ở dòng này
+            print(f'100 ký tự đầu của description: {description[:100]}...') # Sử dụng dấu nháy đơn cho f-string
+            # Sửa lỗi cú pháp f-string ở dòng này
+            print(f'Description có chứa \'<table class="cauhinh"\': {\'<table class="cauhinh"\' in description}') # Sử dụng dấu nháy đơn cho f-string và thoát dấu nháy đơn trong chuỗi cố định
 
         else:
             print(f"Yêu cầu thất bại. Status code: {response.status_code}")
@@ -91,7 +93,6 @@ def check_single_product_api(site_url, consumer_key, consumer_secret, product_id
         print(f"Lỗi kết nối khi kiểm tra sản phẩm ID {product_id}: {e}")
 
     print("-----------------------------------------------\n")
-
 
 def export_to_sheets(products, spreadsheet_url):
     # Thiết lập quyền truy cập Google Sheets

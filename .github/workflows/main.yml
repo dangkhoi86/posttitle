@@ -2,7 +2,7 @@ name: Update Post Title
 
 on:
   schedule:
-    - cron: '*/60 * * * *'
+    - cron: '0 */2 * * *'
   workflow_dispatch:
 
 jobs:
@@ -19,9 +19,14 @@ jobs:
       - name: Install dependencies
         run: pip install requests beautifulsoup4 gspread gspread-formatting urllib3 oauth2client
 
-      # Thay đổi lệnh này để tạo file credentials.json từ secret
+      # Giải mã credentials.json từ GitHub Secrets (bạn phải lưu file này dạng base64 trong secrets)
       - name: Decode Google Credentials
         run: echo "${{ secrets.GOOGLE_CREDENTIALS }}" | base64 -d > credentials.json
 
       - name: Run Update Post Title
+        env:
+          SITE_URL: ${{ secrets.SITE_URL }}
+          CONSUMER_KEY: ${{ secrets.CONSUMER_KEY }}
+          CONSUMER_SECRET: ${{ secrets.CONSUMER_SECRET }}
+          SPREADSHEET_URL: ${{ secrets.SPREADSHEET_URL }}
         run: python postmkcom.py

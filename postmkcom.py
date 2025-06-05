@@ -4,6 +4,13 @@ from oauth2client.service_account import ServiceAccountCredentials
 import urllib3
 from gspread_formatting import *
 import json # Cần import json cho hàm mới
+import os
+
+# Đọc biến từ môi trường
+site_url = os.environ.get("SITE_URL")
+consumer_key = os.environ.get("CONSUMER_KEY")
+consumer_secret = os.environ.get("CONSUMER_SECRET")
+spreadsheet_url = os.environ.get("SPREADSHEET_URL")
 
 # Tắt cảnh báo InsecureRequestWarning
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
@@ -234,18 +241,6 @@ def export_to_sheets(products, spreadsheet_url):
 
 
 def main():
-    # Thông tin WordPress
-    site_url = "https://minhkhoicomputer.com"
-    consumer_key = "ck_7ab1e2ba831d6a6f35bd4d66efdb431aa38ad067"
-    consumer_secret = "cs_220abb9c658e837cd10c9d4eb268dbbdda52909f"
-    
-    # URL của Google Sheet
-    spreadsheet_url = "https://docs.google.com/spreadsheets/d/11rK_Z1g4q8E0monnd-AAtBizT5lcbhD8ggMX8GiLgx4/edit?gid=0"
-    
-    # --- Comment hoặc xóa dòng gọi check_single_product_api sau khi xác nhận đã fix ---
-    # test_product_id = 2087
-    # check_single_product_api(site_url, consumer_key, consumer_secret, test_product_id)
-
     # Lấy danh sách sản phẩm (sử dụng hàm Edit)
     print("Đang lấy danh sách sản phẩm...")
     products = get_all_products(site_url, consumer_key, consumer_secret)

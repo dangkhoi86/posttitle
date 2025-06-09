@@ -2,7 +2,7 @@ name: Update Post Title
 
 on:
   schedule:
-    - cron: '0 */2 * * *'
+    - cron: '0 1-10 * * 1-6'
   workflow_dispatch:
 
 jobs:
